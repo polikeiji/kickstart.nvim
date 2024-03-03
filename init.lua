@@ -817,5 +817,21 @@ require('lazy').setup {
   -- { import = 'custom.plugins' },
 }
 
+-- [[ My custom configurations ]]
+
+-- Disable line number in the terminal mode
+vim.api.nvim_create_autocmd({"TermOpen"}, {
+  pattern = {"*"},
+  command = "setlocal nonumber norelativenumber",
+})
+
+-- Enable paste in the terminal mode
+-- https://stackoverflow.com/a/76301283
+vim.keymap.set('t', '<c-r>', function()
+  local next_char_code = vim.fn.getchar()
+  local next_char = vim.fn.nr2char(next_char_code)
+  return '<C-\\><C-N>"'..next_char..'pi'
+end, { expr = true })
+
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
