@@ -664,7 +664,7 @@ require('lazy').setup({
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
         -- clangd = {},
-        -- gopls = {},
+        gopls = {},
         -- pyright = {},
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
@@ -763,7 +763,7 @@ require('lazy').setup({
       formatters_by_ft = {
         lua = { 'stylua' },
         -- Conform can also run multiple formatters sequentially
-        -- python = { "isort", "black" },
+        python = { 'isort', 'black' },
         --
         -- You can use 'stop_after_first' to run the first available formatter from the list
         -- javascript = { "prettierd", "prettier", stop_after_first = true },
@@ -1040,6 +1040,11 @@ vim.keymap.set('t', '<c-r>', function()
   local next_char = vim.fn.nr2char(next_char_code)
   return '<C-\\><C-N>"' .. next_char .. 'pi'
 end, { expr = true })
+
+-- Set a shortcut for displaying whole LSP error message
+vim.keymap.set('n', '<leader>e', function()
+  vim.diagnostic.open_float(nil, { scope = 'line' })
+end, { desc = 'Show full LSP [e]rror message' })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
