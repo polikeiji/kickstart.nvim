@@ -194,6 +194,9 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
+-- A keymap for formatting markdown table using pandoc
+vim.keymap.set('v', '<leader>t', '!pandoc -t markdown-simple_tables<CR>', { silent = true, desc = 'Align selected md table using pandoc' })
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
